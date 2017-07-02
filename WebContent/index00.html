@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>智能健康状态评估中心</title>
+
+    <link rel='stylesheet' type='text/css' href='css/calendar.css'>
+    <link rel='stylesheet' type='text/css' href='css/style03.css'>
+    <link rel='stylesheet' type='text/css' href='css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='ThirdParty/datepicker/dist/css/bootstrap-datepicker.css'>
+    <!--<link rel="stylesheet" type='text/css' href="css/bootstrap-slider.css">-->
+    <link rel="stylesheet" href="ThirdParty/bootstrap-table/src/bootstrap-table.css">
+
+    <!--<script type="text/javascript" src="js/util.js"></script>-->
+
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style02.css" rel="stylesheet">
+
+    <script type='text/javascript' src='./dwr/engine.js'></script>
+    <script type='text/javascript' src='./dwr/util.js'></script>
+    <script type='text/javascript' src='./dwr/interface/PersonDaoJS.js'></script>
+
+
+    <style>
+        /*@import url(../Build/Cesium/Widgets/widgets.css);*/
+        /*@import url(../Apps/Sandcastle/templates/bucket.css);*/
+        html, body {
+            /*position: fixed;*/
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<div class="panel panel-info">
+    <div class="panel-heading">查询结果</div>
+    <table id="tblPersonList"
+           class="table table-border table-bordered table-hover table-bg"
+           style="font-size:12px; color: #000000"
+    >
+        <!--<table id="tblPersonList"-->
+        <!--class="table table-border table-bordered table-hover table-bg  "-->
+        <!--border="0" cellpadding="0" cellspacing="0" rules=cols-->
+        <!--style="border-collapse: collapse;font-size:12px;"-->
+        <!--data-toggle="table"-->
+        <!--data-pagination="true"-->
+        <!--data-page-size="10"-->
+        <!--data-height="643"-->
+        <!--data-page-list="[15]"-->
+        <!--data-url="undefined"-->
+        <!--&gt;-->
+
+        <!--background-color:rgba(28,43,54,255);color:rgba(255,255,255,200);-->
+        <thead class="text-c">
+        <tr style="height: 36px">
+            <!--<th style="width: 16px;text-align: center">ID</th>-->
+            <th style="width: 36px">编号</th>
+            <th style="width: 160px">手机号码</th>
+            <th style="width: 120px">日期</th>
+            <th style="width: 240px">照片</th>
+            <th style="width: 240px">音频</th>
+            <th style="width: 240px">视频</th>
+            <!--<th data-field="rowid" style="width: 25px">编号</th>-->
+            <!--<th data-field="name" style="width: 275px">航次名称</th>-->
+            <!--<th data-field="seaArea" style="width: 40px">海域</th>-->
+            <!--<th data-field="VStart" style="width: 100px">调查时间</th>-->
+        </tr>
+        </thead>
+        <tbody id="tbodyPersonList" class="text-c"
+               style="border-bottom: 2px;border-bottom-color: #00a8c6"></tbody>
+    </table>
+
+</div>
+
+
+<script type="text/javascript">
+
+    //人员列表
+    var personRows = [];
+
+    var personRowNumber = 15;
+    var curPageNumber = 1;
+    var callBackPersonList = function (PersonList) {
+        //alert(PersonList.length);
+        //alert(PersonList[1].seaArea);
+        var rowSumNumber = PersonList.length;
+//        PersonTrajPathList.splice(0, PersonTrajPathList.length);
+//        clearTable("tbodyPersonList");
+//        var sumPageNumber = Math.ceil(PersonList.length / personRowNumber);
+//
+//        var startIndex = (curPageNumber - 1) * personRowNumber;
+//        var endIndex = ( 1 + curPageNumber - 1) * personRowNumber;
+//        if (curPageNumber == sumPageNumber) {
+//            endIndex = (curPageNumber - 1) * personRowNumber + PersonList.length - (sumPageNumber - 1) * personRowNumber;
+//        }
+
+
+//        for (var i = startIndex; i < endIndex; i++) {
+        for (var i = 0; i < PersonList.length; i++) {
+            personRows = [];
+            personRows.push({
+                rowid: i.toString(),
+                phoneNumber: PersonList[i].phoneNumber,
+                date: PersonList[i].date,
+                imagePath: PersonList[i].imagePath,
+                voicePath: PersonList[i].voicePath,
+                videoPath: PersonList[i].videoPath
+            });
+
+
+            var row = document.createElement("tr");
+            var cell = document.createElement("td");
+            var cell1 = document.createElement("td");
+            var cell2 = document.createElement("td");
+            var cell3 = document.createElement("td");
+            var cell4 = document.createElement("td");
+            var cell5 = document.createElement("td");
+            cell.appendChild(document.createTextNode((i + 1).toString()));
+            cell1.appendChild(document.createTextNode(PersonList[i].phoneNumber));
+            cell2.appendChild(document.createTextNode(PersonList[i].date));
+            cell3.appendChild(document.createTextNode(PersonList[i].imagePath));
+            cell4.appendChild(document.createTextNode(PersonList[i].voicePath));
+            cell5.appendChild(document.createTextNode(PersonList[i].videoPath));
+            cell1.setAttribute("data-toggle", "tooltip");
+            cell1.setAttribute("title", PersonList[i].phoneNumber);
+
+            cell2.setAttribute("data-toggle", "tooltip");
+            cell2.setAttribute("title", PersonList[i].date);
+            row.appendChild(cell);
+            row.appendChild(cell1);
+            row.appendChild(cell2);
+            row.appendChild(cell3);
+            row.appendChild(cell4);
+            row.appendChild(cell5);
+
+            row.onclick = function () {
+
+                alert("row.onclick");
+//                clearTable("tbodyStationList");
+//                //    $('#page2').click();
+//                var terminaltablecontent2 = $('#page3');
+//                var terminaltablecontent3 = $('#station-info2');
+//                var terminaltablecontent = $('#page2');
+//                var terminaltablecontent1 = $('#station-info4');
+//                terminaltablecontent2.removeClass('active');
+//                terminaltablecontent3.removeClass('in');
+//                terminaltablecontent.addClass('active');
+//                terminaltablecontent1.addClass('in');
+
+//                selectedperson = 1;
+//                selectedSta = 0;
+//
+//               var selRowIndex = this.rowIndex;
+//
+//                var strSQLpersonInfo = "select * from Person where ID=?";
+//                OracleOperationJS.QueryPersonInfo(strSQLpersonInfo, selpersonID, callBackPersonInfo);
+//
+//                var strSQLStaList = "select * from STATION where Person_ID=? order by ID";
+//                OracleOperationJS.QueryStationList(strSQLStaList, selpersonID, callBackStationList);
+
+
+            };
+            var obody = document.getElementById("tbodyPersonList");
+            obody.appendChild(row);
+
+
+        }
+
+
+    };
+
+
+
+    var strSQLPersonList = "";
+
+    PersonDaoJS.QueryPersonList(strSQLPersonList, callBackPersonList);
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC
+        "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN"
+        "http://getahead.org/dwr/dwr30.dtd">
+
+<dwr>
+    <allow>
+        <!--<create creator="new" javascript="ServiceJS">-->
+            <!--<param name="class" value="DWRService.ServiceClass"></param>-->
+        <!--</create>-->
+        <create creator="new" javascript="PersonDaoJS">
+            <param name="class" value="com.dongzi.daoimp.PersonDao"></param>
+        </create>
+         <create creator="new" javascript="AdminLoginDaoJS">
+            <param name="class" value="com.dongzi.daoimp.AdminLoginDao"></param>
+        </create>
+        <convert converter="bean" match="com.dongzi.daoimp.*"/>
+        <convert converter="bean" match="VoyageMod.*"/>
+        <convert converter="bean" match="com.dongzi.bean.PersonInfo"/>
+        <convert converter="bean" match="com.dongzi.bean.TransplantInfo"/>
+        
+    </allow>
+
+</dwr>  
