@@ -44,38 +44,39 @@ public class loginServlet extends HttpServlet {
             throws ServletException, IOException {
  
                 } 
-
-	public void login() {
-		try {
-
-			response.setContentType("text/html;charset=utf-8");
-			response.setCharacterEncoding("UTF-8");
-
-			Map<String, String> json = new HashMap<String, String>();
-
-			String username = request.getParameter("userName");
-			String password = request.getParameter("password");
-			String imagePath = request.getParameter("imagePath");
-			String voicePath = request.getParameter("voicePath");
-			String videoPath = request.getParameter("videoPath");
-			UserDaoImp userDaoImp = new UserDaoImp();
-			boolean b = userDaoImp.Insert(username, password,imagePath,voicePath,videoPath);
-			if (b) {
-//				json.put("message", "��¼�ɹ���");
-				json.put("message", "登录成功");
-			} else {
-//				json.put("message", "��¼ʧ�ܣ�");
-				json.put("message", "登录失败");
-			}
-
-			byte[] jsonBytes = json.toString().getBytes("utf-8");
-			response.setContentLength(jsonBytes.length);
-			response.getOutputStream().write(jsonBytes);
-			response.getOutputStream().flush();
-			response.getOutputStream().close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
+//
+//	public void login() {
+//		try {
+//
+//			response.setContentType("text/html;charset=utf-8");
+//			response.setCharacterEncoding("UTF-8");
+//
+//			Map<String, String> json = new HashMap<String, String>();
+//
+//			String username = request.getParameter("userName");
+//			String password = request.getParameter("password");
+//			String imagePath = request.getParameter("imagePath");
+//			String voicePath = request.getParameter("voicePath");
+//			String videoPath = request.getParameter("videoPath");
+//			UserDaoImp userDaoImp = new UserDaoImp();
+//			boolean b = userDaoImp.Insert(username, password,imagePath,voicePath,videoPath);
+//			if (b) {
+////				json.put("message", "��¼�ɹ���");
+//				json.put("message", "登录成功");
+//			} else {
+////				json.put("message", "��¼ʧ�ܣ�");
+//				json.put("message", "登录失败");
+//			}
+//
+//			byte[] jsonBytes = json.toString().getBytes("utf-8");
+//			response.setContentLength(jsonBytes.length);
+//			response.getOutputStream().write(jsonBytes);
+//			response.getOutputStream().flush();
+//			response.getOutputStream().close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//	}
+//
 }
