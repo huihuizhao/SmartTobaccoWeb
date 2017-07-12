@@ -46,12 +46,13 @@ public ArrayList<TransplantInfo> QueryPersonList(String strSQL) {
 			ResultSet resultSet = stmt.executeQuery(sql);// 创建数据对象
 			while (resultSet.next()) {
 				TransplantInfo transplantInfo = new TransplantInfo();
-				transplantInfo.setID(resultSet.getString("ID"));
-				transplantInfo.setfieldID(resultSet.getString("fieldID"));
-				transplantInfo.setarea(resultSet.getString("area"));
 				transplantInfo.setcount(resultSet.getString("count"));
+				transplantInfo.setarea(resultSet.getString("area"));
+				transplantInfo.setvariety(resultSet.getString("variety"));
 				transplantInfo.setlongitude(resultSet.getString("longitude"));
 				transplantInfo.setlatitude(resultSet.getString("latitude"));
+				transplantInfo.setdate(resultSet.getString("date"));
+				transplantInfo.setfieldID(resultSet.getString("fieldID"));
 				transplantInfo.settown(resultSet.getString("town"));
 				transplantInfo.setpicturePath(resultSet.getString("picturePath"));
 

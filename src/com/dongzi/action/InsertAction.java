@@ -38,17 +38,18 @@ public class InsertAction extends ActionSupport implements ServletRequestAware, 
 
 			Map<String, String> json = new HashMap<String, String>();
 
-			String ID = this.request.getParameter("ID");
+			String count = this.request.getParameter("count");
 			String area = this.request.getParameter("area");
-			String count = this.request.getParameter("count");		
+			String variety = this.request.getParameter("variety");
 			String longitude = this.request.getParameter("longitude");
 			String latitude = this.request.getParameter("latitude");
-			String date = this.request.getParameter("date");		
-			String fieldID = this.request.getParameter("fieldID");	
+			String ID = this.request.getParameter("ID");
+			String date = this.request.getParameter("date");
+			String fieldID = this.request.getParameter("fieldID");
 			String town = this.request.getParameter("town");
 			String picturePath = this.request.getParameter("picturePath");
 			UserDaoImp userDaoImp = new UserDaoImp();
-			boolean b = userDaoImp.Insert(ID,area,count,longitude,latitude,date,fieldID,town, picturePath);
+			boolean b = userDaoImp.Insert(count,area, variety,  longitude, latitude, date, fieldID, town, picturePath);
 			if (b) {
 				json.put("message", "插入成功");
 			} else {

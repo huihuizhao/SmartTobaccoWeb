@@ -40,6 +40,14 @@ public class TransplantInfo {
 	    public void setarea(String area) {
 	        this.area = area;
 	    }
+	    
+	    private String variety;
+	    public String getvariety() {
+	        return variety;
+	    }
+	    public void setvariety(String variety) {
+	        this.variety = variety;
+	    }
 
 	    /*��Ƶ*/
 	    private String longitude;
@@ -60,6 +68,14 @@ public class TransplantInfo {
 	    }
 	    
 	    /*��Ƶ*/
+	    private String date;
+	    public String getdate() {
+	        return date;
+	    }
+	    public void setdate(String date) {
+	        this.date = date;
+	    }
+	    
 	    private String town;
 	    public String gettown() {
 	        return town;
